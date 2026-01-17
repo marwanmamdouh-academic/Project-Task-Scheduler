@@ -1,0 +1,66 @@
+﻿@model MarwanMamdohW2_0523016.Models.Entites.Project
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Startdate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Startdate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Projectid" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-outline-dark">Back to List</a>
+</div>
+<h1>Tasks</h1>
+<table class="table table-striped">
+    <thead class="table table-dark">
+    <th> TaskTitle</th>
+    <th>status</th>
+    <th>prirority</th>
+    <th>Deadline</th>
+    <th>Teammember</th>
+    <th>update</th>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.tasks)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Status</td>
+                <td>@item.Prirority</td>
+                <td>@item.Date</td>
+                <td> <a asp-controller="member" asp-route-id="@item.memid" class="btn btn-info">@item.member.name</a></td>
+                <td><a asp-action="Edit" asp-controller="task" asp-route-id="@item.taskid" class="btn btn-warning">Edit</a></td>
+            </tr> 
+        }
+     </tbody>
+</table>
